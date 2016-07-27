@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"/>
+    <title>h5加载条</title>
+    <style rel="stylesheet" type="text/css">
+        *{margin:0;padding:0;}
+        .loading{
+            width:80%;
+            height:36px;
+            background:#999;
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            overflow:hidden;
+            border-radius:5px;
+        }
+        .loading-con{
+            width:0;
+            height:36px;
+            background:green;
+        }
+        .per-num{
+            width:100%;
+            height:36px;
+            line-height:36px;
+            text-align:center;
+            color:#fff;
+            font-size:24px;
+            position:absolute;
+            top:0;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+    <!--loading结构 S-->
+    <div class="loading">
+        <div class="loading-con" id="loading-line"></div>
+        <p class="per-num" id="loading-per">0%</p>
+    </div>
+    <!--loading结构 E-->
+    <script>
+        var imgarr=['http://himg2.huanqiu.com/attachment2010/2012/0525/20120525042526697.jpg', 'http://www.chinanews.com/cr/2015/1119/2634365829.jpg',
+                    'http://www.cssn.cn/zt/zt_xkzt/zt_jsxzt/jsx_jjnh/nh_rtzx/201412/W020141208537235397889.jpg','http://news.tigercity.net/attachments/2011/05/31/9001_201105311544551q4yh.jpg',
+                    'http://www.xinhuanet.com/world/titlepic/111547/1115479659_title0h.jpg','http://www.redjun.com/uploads/allimg/150123/102302G57-4.jpg',
+                    'http://www.gzsrex.com/Uploads/201405/53686507a525b.jpg','http://pic39.nipic.com/20140316/3344588_235616333189_2.jpg'
+                ],//要加载的图片地址，此处是直接从网上找的，模拟效果用，实现场景要换成真的
+                loadingL=document.getElementById("loading-line"),//进度条
+                loadingPer=document.getElementById("loading-per");//进度值
+
+        //改变进度函数
+        function changefn(num){
+            loadingL.style.width=num+'%';
+            loadingPer.innerHTML=num+'%';
+        }
+
+        function loadingfn(){
+            var imgo=new Image(),//图像对象
+                  imglen=imgarr.length-1,
+                  count= 0,
+                  pernum=0;
+            imgo.src=imgarr[count];
+            imgo.onload=function(){
+                count++;
+                pernum=parseInt(count/imglen*100);
+                changefn(pernum);
+                if(count==imglen){
+                    //这里执行页面初始化工作
+                    alert('图片加载完成喽！可以进入初始化')
+                    return;
+                }
+                this.src=imgarr[count];
+            };
+            imgo.onerror=function(){
+                    //这里执行页面初始化工作
+                    alert('图片出错直接加载完成喽！可以进入初始化')
+            };
+        }
+
+        loadingfn();
+    </script>
+    </body
+</html>
