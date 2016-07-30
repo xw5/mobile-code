@@ -7,9 +7,15 @@
 <meta content="black" name="apple-mobile-web-app-status-bar-style">
 <meta content="telephone=no" name="format-detection">
 <meta content="email=no" name="format-detection">
-<title>主结构&适配方案4</title>
+<title>主结构&适配方案5</title>
 <!--适配主逻辑 S-->
 <script type="text/javascript">
+    //实现真实一像素显示
+    function getOnePx(){
+        var dpi=window.devicePixelRatio,
+            scalez=1/dpi;
+        document.write('<meta content="width=device-width,initial-scale='+scalez+',maximum-scale='+scalez+',user-scalable=no" name="viewport">')
+    }
     //适配函数
     function reset(){
         var htmlo=document.getElementsByTagName('html')[0],
@@ -17,6 +23,8 @@
             fontSz=clientW/16+'px';
         htmlo.style.fontSize=fontSz;
     }
+    //调用一像素显示
+    getOnePx();
     //初始进来执行一次适配
     reset();
     //当屏幕旋转的时候，再次执行一次适配
@@ -43,7 +51,6 @@
         overflow:hidden;
         line-height:0.9rem;
         font-size:0.55rem;
-        overflow:hidden;
     }
     .aside_left,.aside_right{
         width:7.5rem;
@@ -57,10 +64,10 @@
     .aside_con{
         width:15rem;
         height:4rem;
-        overflow:hidden;
+        oveflow:hidden;
         background:blue;
         color:white;
-        line-height:2rem;
+        line-height:4rem;
         font-size:0.75rem;
         text-align:center;
     }
@@ -72,10 +79,9 @@
     }
     h3{
         font-size:0.7rem;
-        line-height:1rem;
+        line-height:1.2rem;
     }
-     ul{
-        overflow:hidden;
+    ul{
         padding-left:1rem;
         border:1px solid #000;
     }
