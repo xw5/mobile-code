@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<title>主结构&适配方案4</title>
+<!--适配主逻辑 S-->
+<script type="text/javascript">
+    //适配函数
+    function reset(){
+        var htmlo=document.getElementsByTagName('html')[0],
+            clientW=document.documentElement.clientWidth || document.body.clientWidth,
+            fontSz=clientW/16+'px';
+        htmlo.style.fontSize=fontSz;
+    }
+    //初始进来执行一次适配
+    reset();
+    //当屏幕旋转的时候，再次执行一次适配
+    window.addEventListener('onorientationchange' in window ? 'orientationchange' : 'resize',function(){
+        setTimeout(function(){reset();},100);
+    },false)
+</script>
+<!--适配主逻辑 E-->
+<style>
+    body{
+        margin:0;
+        background:#000;
+    }
+    h3,p,ul{
+        margin:0;
+        padding:0;
+    }
+    .wrap{
+         width:100%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding:0 0.5rem;
+        background:#ccc;
+        overflow:hidden;
+        line-height:0.9rem;
+        font-size:0.55rem;
+    }
+    .aside_left,.aside_right{
+        width:7.5rem;
+        height:4rem;
+        float:left;
+        color:white;
+        line-height:4rem;
+        font-size:0.65rem;
+        text-align:center;
+    }
+    .aside_con{
+        width:15rem;
+        height:4rem;
+        oveflow:hidden;
+        background:blue;
+        color:white;
+        line-height:2rem;
+        font-size:0.75rem;
+        text-align:center;
+    }
+    .aside_left{
+        background:red;
+    }
+    .aside_right{
+        background:green;
+    }
+    h3{
+        font-size:0.7rem;
+        line-height:1rem;
+    }
+    ul{
+        padding-left:1rem;
+    }
+</style>
+</head>
+<body>
+    <div id="wrap" class="wrap">
+
+        <!--示范结构 S-->
+        <div class="aside_con">
+            <div class="aside_left">示范块内容0</div>
+            <div class="aside_right">示范块内容1</div>
+        </div>
+        <div class="aside_con">整条示范内容2</div>
+        <!--示范结构 E-->
+        
+        <!--适配说明 S-->
+        <h3>主结构说明</h3>
+        <ul>
+            <li>通过REM方案来适配布局</li>
+            <li>apple-mobile-web-app-capable：当网站添加到主屏幕快速启动方式，可隐藏地址栏，仅针对ios的safari</li>
+            <li>apple-mobile-web-app-status-bar-style：将网站添加到主屏幕快速启动方式，仅针对ios的safari顶端状态条的样式</li>
+            <li>telephone=no：禁用自动识别手机号</li>
+            <li>email=no：禁用自动识别邮箱</li>
+        </ul>
+        <h3> 适配说明：</h3>
+        <ul>
+            <li>主要是通过动态根据屏幕的宽度设置html无素的字体，再根据1rem等于HTML的字号大小来换算布局，例如你的设计稿是640，那除以16则HTML的根字号就是40px,那假设设计上的尺寸是320PX的元素，在写样式的时候就写在320/40rem</li>
+            <li>注意事项:此种方案是开发HTML5项目很理想的适配方案，特别是公司的wap端项目或者wepAPP,此种适配有一个问题就是很难实现1PX的像的东东，如果手机的像素比是2，那1PX的边框会显示成2像素，只会影响这些小细节，不会影响功能使用，要想做出近1PX的东东，可以通过伪类:after :before来插入元素再缩小1部就可以模拟出近似1PX的东东，如果想完美实现1PX，适配方案5</li>
+        </ul>
+        <!--适配说明 E-->
+
+    </div>
+</body>
+</html>
