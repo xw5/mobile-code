@@ -156,7 +156,7 @@
             //初始进来执行一次适配
             reset();
             //当屏幕旋转的时候，再次执行一次适配
-            window.addEventListener('onorientationchange' in window ? 'orientationchange' : 'resize',function(){
+            window.addEventListener('resize',function(){
                 setTimeout(function(){reset();},100);
             },false)
         </script>
