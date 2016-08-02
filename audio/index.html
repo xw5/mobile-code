@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"/>
+    <title>h5加音乐</title>
+    <style rel="stylesheet" type="text/css">
+        *{margin:0;padding:0;}
+        button{
+            padding:5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <button>点击声</button>
+    <button>GOOD</button>
+    <button>WRONG</button>
+
+    <!--音乐结构 S-->
+    <audio loop autoplay id="bgmusic"><source src="./bgmusic.mp3" ></audio>
+    <audio preload id="btnmusic"><source src="./btnmusic.mp3"></audio>
+    <audio preload id="goodmusic"><source src="./good.mp3"></audio>
+    <audio preload id="wrongmusic"><source src="./wrong.mp3"></audio>
+    <!--音乐结构 E-->
+
+    <script>
+        var bgmusico=document.getElementById('bgmusic'),
+            btnmusico=document.getElementById('btnmusic'),
+            goodmusico=document.getElementById('goodmusic'),
+            wrongmusico=document.getElementById('wrongmusic'),
+            btna=document.getElementsByTagName('button');
+        btna[0].addEventListener("ontouchend" in document ? 'touchend' : "click",function(){
+            playEffect(btnmusico);
+        },false);
+        btna[1].addEventListener("ontouchend" in document ? 'touchend' : "click",function(){
+            playEffect(goodmusico);
+        },false);
+        btna[2].addEventListener("ontouchend" in document ? 'touchend' : "click",function(){
+            playEffect(wrongmusico);
+        },false);
+        //主动触发背景音乐播放，苹果机上音乐不会自动播放
+        bgmusico.play();
+        //主要是为了解决同时二个声音播放的兼容问题，苹果手机不能同时播放二个声音，
+        //为了保证背景音乐一直在播放，在播放某一个音效的时候先关掉背景再等音频结束再播放背景
+        function playEffect(musico){
+            bgmusico.pause();
+            musico.play();
+            setTimeout(function(){
+                bgmusico.play();
+            },musico.duration*1000)
+        }
+    </script>
+    </body
+</html>
