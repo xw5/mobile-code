@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"/>
+    <title>h5常用动画效果</title>
+    <style rel="stylesheet" type="text/css">
+        *{margin:0;padding:0;}
+        /*从左往右透明切入*/
+        @-webkit-keyframes lran{
+            0%{-webkit-transform:translateX(-100%);opacity:0;}
+            100%{-webkit-transform:translateX(0);opacity:1;}
+        }
+        @keyframes lran{
+            0%{transform:translateX(-100%);opacity:0;}
+            100%{transform:translateX(0);opacity:1;}
+        }
+        /*从右往左透明切入*/
+        @-webkit-keyframes rlan{
+            0%{-webkit-transform:translateX(100%);opacity:0;}
+            100%{-webkit-transform:translateX(0);opacity:1;}
+        }
+        @keyframes rlan{
+            0%{transform:translateX(100%);opacity:0;}
+            100%{transform:translateX(0);opacity:1;}
+        }
+        /*从下往上透明切入*/
+        @-webkit-keyframes btan{
+            0%{-webkit-transform:translateY(100%);opacity:0;}
+            100%{-webkit-transform:translateY(0);opacity:1;}
+        }
+        @keyframes btan{
+            0%{transform:translateY(100%);opacity:0;}
+            100%{transform:translateY(0);opacity:1;}
+        }
+        /*从上往下透明切入*/
+        @-webkit-keyframes tban{
+            0%{-webkit-transform:translateY(-100%);opacity:0;}
+            100%{-webkit-transform:translateY(0);opacity:1;}
+        }
+        @keyframes tban{
+            0%{transform:translateY(-100%);opacity:0;}
+            100%{transform:translateY(0);opacity:1;}
+        }
+        /*旋转动画*/
+        @-webkit-keyframes rotaan{
+            0%{-webkit-transform:rotateZ(0deg);opacity:0;}
+            100%{-webkit-transform:rotateZ(360deg);opacity:1;}
+        }
+        @keyframes rotaan{
+            0%{transform:rotateZ(0deg);opacity:0;}
+            100%{transform:rotateZ(360deg);opacity:1;}
+        }
+        /*缩放透明入场*/
+        @-webkit-keyframes scalean{
+            0%{-webkit-transform:scale(5);opacity:0;}
+            100%{-webkit-transform:scale(1);opacity:1;}
+        }
+        @keyframes scalean{
+            0%{transform:scale(5);opacity:0;}
+            100%{transform:scale(1);opacity:1;}
+        }
+        /*透明进入*/
+        @-webkit-keyframes opean{
+            0%{opacity:0;}
+            100%{opacity:1;}
+        }
+        @keyframes opean{
+            0%{opacity:0;}
+            100%{opacity:1;}
+        }
+        /*3D翻转*/
+        @-webkit-keyframes flipan{
+            0%{-webkit-transform:rotateX(-180deg);}
+            100%{-webkit-transform:rotateX(0);}
+        }
+        @keyframes flipan{
+            0%{transform:rotateX(-180deg);}
+            100%{transform:rotateX(0);}
+        }
+        /*序列帧动画*/
+        @-webkit-keyframes wateringan{
+            0%{background-position:0 0;}
+            100%{background-position:-3287px 0;}
+        }
+        @keyframes wateringan{
+            0%{background-position:0 0;}
+            100%{background-position:-3287px 0;}
+        }
+        #wrap{
+            width:640px;
+            overflow:hidden;
+        }
+        #wrap>div{
+            width:100%;
+            height:86px;
+            line-height:86px;
+            font-size:30px;
+            text-align:center;
+            opacity:0;
+        }
+        .up_down{
+            background:red;
+            -webkit-animation:tban 0.6s 1 0s forwards;
+            animation:tban 0.6s 1 0s forwards;
+        }
+        .down_up{
+            background:blue;
+            -webkit-animation:tban 0.6s 1 0.6s forwards;
+            animation:btan 0.6s 1 0.6s forwards;
+        }
+        .right_left{
+            background:green;
+            -webkit-animation:rlan 0.6s 1 1.2s forwards;
+            animation:rlan 0.6s 1 1.2s forwards;
+        }
+        .left_right{
+            background:gray;
+            -webkit-animation:lran 0.6s 1 1.8s forwards;
+            animation:lran 0.6s 1 1.8s forwards;
+        }
+        .opacityan{
+            background:purple;
+            -webkit-animation:opean 0.6s 1 2.4s forwards;
+            animation:opean 0.6s 1 2.4s forwards;
+        }
+        .rotatean{
+            background:yellow;
+            -webkit-animation:rotaan 0.6s 1 3s forwards;
+            animation:rotaan 0.6s 1 3s forwards;
+        }
+        .scale_rotate{
+            background:black;
+            color:#fff;
+            -webkit-animation:scalean 0.6s 1 3.6s forwards;
+            animation:scalean 0.6s 1 3.6s forwards;
+        }
+        #wrap .flip_warp{
+            -webkit-animation:opean 0.4s 1 4.2s forwards;
+            animation:opean 0.4s 1 4.2s forwards;
+            -webkit-perspective:800px;
+            perspective:800px;
+        }
+        #wrap .flip{
+            background:black;
+            color:#fff;
+            -webkit-transform-style:preserve-3d;
+            transform-style:preserve-3d;
+            -webkit-transform:rotateX(-180deg);
+            transform:rotateX(-180deg);
+            -webkit-animation:flipan 0.6s 1 4.4s forwards;
+            animation:flipan 0.6s 1 4.4s forwards;
+        }
+        #wrap .watering_opean{
+            width:328.7px;
+            height:634px;
+            position:fixed;
+            top:10px;
+            right:10px;
+            -webkit-animation:opean 0.4s 1 5.2s forwards;
+            animation:opean 0.4s 1 5.2s forwards;
+        }
+        #wrap .watering{
+            width:328.7px;
+            height:634px;
+            background:url(waterspr.png) no-repeat;
+            -webkit-animation:wateringan 1s steps(10,end) 5.6s infinite;
+            animation:wateringan 1s steps(10,end) 5.6s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <!--适配主逻辑 S-->
+        <script type="text/javascript">
+            //适配函数
+            function reset(){
+                var wrapo=document.getElementById('wrap'),
+                      clientW=document.documentElement.clientWidth || document.body.clientWidth,
+                      designw=640,
+                      scaleRate=clientW/designw;
+                wrapo.style.cssText="-webkit-transform-origin:0 0;transform-origin:0 0;webkit-transform:scale("+scaleRate+");transform:scale("+scaleRate+");"
+            }
+            //初始进来执行一次适配
+            reset();
+            //当屏幕旋转的时候，再次执行一次适配
+            window.addEventListener('resize',function(){
+                setTimeout(function(){reset();},100);
+            },false)
+        </script>
+        <!--适配主逻辑 E-->
+        <div class="up_down">从上往下透明切入</div>
+        <div class="down_up">从下往上透明切入</div>
+        <div class="right_left">从右往左透明切入</div>
+        <div class="left_right">从左往右透明切入</div>
+        <div class="opacityan">透明进入</div>
+        <div class="rotatean">旋转</div>
+        <div class="scale_rotate">缩放透明入场</div>
+        <div class="flip_warp">
+            <div class="flip">3D翻转</div>
+        </div>
+        <div class="watering_opean">
+            <div class="watering"></div>
+        </div>
+    </div>
+</body
+</html>
