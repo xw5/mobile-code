@@ -7,16 +7,31 @@
 <meta content="black" name="apple-mobile-web-app-status-bar-style">
 <meta content="telephone=no" name="format-detection">
 <meta content="email=no" name="format-detection">
-<title>主结构&适配方案2</title>
+<title>主结构&适配方案1全屏</title>
     <style>
-        body{
-            margin:0;
+        /* 必须需要的样式 S*/
+        html,body{
+            width:100%;
+            height:100%;
+            overflow:hidden;
         }
         .wrap{
             width:640px;
+            height:100%;
             overflow:hidden;
-            line-height:36px;
-            font-size:24px;
+            background:url(bg.jpg) no-repeat center 0;
+            -webkit-background-size:cover;
+            background-size:cover;
+        }
+        /* 必须需要的样式 E*/
+        *{
+          margin:0;
+          padding:0; 
+        }
+        .wrap{
+           line-height:36px;
+            font-size:24px; 
+            color:#fff;
         }
         .aside_left,.aside_right{
             width:320px;
@@ -46,14 +61,13 @@
     </style>
 </head>
 <body>
-    <div id="wrap" class="wrap">
+     <div id="wrap" class="wrap">
 
         <!--示范结构 S-->
         <div class="aside_con">
             <div class="aside_left">示范块内容0</div>
             <div class="aside_right">示范块内容1</div>
         </div>
-        <div class="aside_con">整条示范内容2</div>
         <!--示范结构 E-->
         
         <!--适配说明 S-->
@@ -68,12 +82,6 @@
         <h3> 适配说明：</h3>
         <ul>
             <li>它使用了viewport视口的特性，手机会保证内容在一个视口内显示，把视口设计成你设计稿的宽度，如当你设计稿是640的时候你就按640PX宽来布局，如果是750的你就按750PX来布局，里面全用像素单位，回归到了PC的像素单位时代</li>
-            <li>主要的适合用在一些移动端的活动宣传页，要求上线快，下的也快的那些页面，即保证了速度也保证了开发成本，用来做功能页也是问题不大的</li>
-            <li>有一定的兼容风险，如果只是在微信里用的，这种适配方式就是你的菜，如果要兼容安卓低版本的一些手机原生浏览器，那这种适配方式不太适合。
-                我有遇到的一个场景是：公司的宣传页不但要放在微信里宣传，而且还要内嵌放到安卓APP里宣传，而安卓APP是调用手机的默认浏览器的，
-                虽然target-densitydpi=device-dpi是来解决安卓低版本兼容的，但是还是会有一些小差距，并不能保证内容在一屏宽度内，而且浏览器还能手动缩放，
-                当时不得已修改方案，考虑到修改的大小，后面使用适配方案2来解决的
-            </li>
         </ul>
         <!--适配说明 E-->
 
